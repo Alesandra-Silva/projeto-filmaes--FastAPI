@@ -50,6 +50,3 @@ def listar_filme():
             cursor.close()
             conexao.close()
 
-filmes = listar_filme()
-for linha in filmes:
-    print(linha[1])
