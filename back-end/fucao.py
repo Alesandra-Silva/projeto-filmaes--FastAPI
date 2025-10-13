@@ -27,7 +27,7 @@ def inserir_filmes(titulo, genero,ano,avaliacao):
         try:
             cursor.execute(
                 "INSERT INTO filmes (titulo, genero, ano, avaliacao) VALUES (%s, %s, %s, %s)",
-                (titulo, genero, ano, avaliacao )
+                (titulo, genero, ano, avaliacao ),
             )
             conexao.commit()
         except Exception as erro:
@@ -56,7 +56,7 @@ def atualizar_filme(id_filme, nova_avaliacao):
         try:
             cursor.execute(
                 "UPDATE filmes SET avaliacao = %s WHERE id = %s",
-                (nova_avaliacao, id_filme)
+                (nova_avaliacao, id_filme),
             )
             conexao.commit()
         except Exception as erro:
@@ -65,3 +65,17 @@ def atualizar_filme(id_filme, nova_avaliacao):
             cursor.close()
             conexao.close()
 
+def deletar_filme(id_filme,):
+    conexao, cursor = conectar()
+    if conexao:
+        try:
+            cursor.execute(
+                "DELETE FROM filmes WHERE id = %s",
+                ( id_filme),
+            )
+            conexao.commit()
+        except Exception as erro:
+            print(f"Erro ao tentar deletar filme {erro}")
+        finally:
+            cursor.close()
+            conexao.close()
